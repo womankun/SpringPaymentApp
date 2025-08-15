@@ -13,7 +13,14 @@ public class PaymentService {
         this.paymentMapper = paymentMapper;
     }
 
-    public void registerPayment(Payment payment) {
+    public void registerPayment(Payment payment) {      
+        String cardNumber = payment.getCardNumber();
+
+        if (cardNumber.equals("4100000000005000")) {
+          payment.setStatus("declined");
+        } else {
+          payment.setStatus("authorised");
+        }
         paymentMapper.insertPayment(payment);
     }
 }

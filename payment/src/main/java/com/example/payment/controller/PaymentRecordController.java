@@ -1,7 +1,11 @@
 package com.example.payment.controller;
 
+import com.example.payment.dto.PaymentRecordRequest;
+import com.example.payment.dto.PaymentRecordResponse;
 import com.example.payment.model.Payment;
 import com.example.payment.service.PaymentRecordService;
+
+import jakarta.validation.Valid;
 
 import java.util.List;
 
@@ -20,8 +24,15 @@ public class PaymentRecordController {
 
     // 決済履歴一覧取得API
     @GetMapping
-    public ResponseEntity<List<Payment>> selectAllRecords() {
-      List<Payment> payments = paymentRecordService.selectAllRecords();
+    public ResponseEntity<PaymentRecordResponse> selectAllRecords() {
+      PaymentRecordResponse payments = paymentRecordService.selectAllRecords();
       return ResponseEntity.ok(payments);
+    }
+
+    // 決済履歴一覧取得API
+    @PostMapping
+    public ResponseEntity<PaymentRecordResponse> selectRecordByPaymentId(@RequestBody @Valid PaymentRecordRequest request) {
+      PaymentRecordResponse payment = paymentRecordService.selectRecordByPaymentId(request.getPaymentId());
+      return ResponseEntity.ok(payment);
     }
 }

@@ -1,9 +1,7 @@
 package com.example.payment.service;
 
+import com.example.payment.dto.PaymentRecordResponse;
 import com.example.payment.mapper.PaymentRecordMapper;
-import com.example.payment.model.Payment;
-
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,13 @@ public class PaymentRecordService {
         this.PaymentRecordMapper = PaymentRecordMapper;
     }
 
-    public List<Payment> selectAllRecords() {
-        return PaymentRecordMapper.selectAllRecords();
+    public PaymentRecordResponse selectAllRecords() {
+        PaymentRecordResponse response = new PaymentRecordResponse(PaymentRecordMapper.selectAllRecords());
+        return response;
+    }
+
+    public PaymentRecordResponse selectRecordByPaymentId(String paymentId) {
+        PaymentRecordResponse response = new PaymentRecordResponse(PaymentRecordMapper.selectRecordByPaymentId(paymentId));
+        return response;
     }
 }

@@ -9,4 +9,8 @@
     SELECT * FROM payments ORDER BY created_at DESC
   </select>
 
+  <select id="selectRecordByPaymentId" parameterType="com.example.payment.model.Payment">
+    SELECT * FROM payments WHERE payment_id = #{paymentId}
+  </select>
+
 </mapper>

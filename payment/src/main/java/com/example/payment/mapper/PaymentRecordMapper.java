@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface PaymentRecordMapper {
     List<Payment> selectAllRecords();
+    List<Payment> selectRecordByPaymentId(String paymentId);
 }

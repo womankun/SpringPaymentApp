@@ -2,6 +2,7 @@ package com.example.payment.model;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.UUID;
 
 import com.example.payment.validation.ValidExpiry;
 
@@ -14,7 +15,7 @@ import lombok.Setter;
 
 @Getter
 public class Payment {
-    private Long paymentId;
+    private final String paymentId;
 
     @NotNull(message = "金額は必須です")
     @Min(value = 0, message = "金額は0以上である必要があります")
@@ -31,4 +32,9 @@ public class Payment {
     private String cardExpiry;
 
     private Timestamp createdAt;
+    
+    public Payment() {
+        this.paymentId = UUID.randomUUID().toString();
+    }
+
 }

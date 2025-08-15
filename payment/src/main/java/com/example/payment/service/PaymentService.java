@@ -15,6 +15,7 @@ public class PaymentService {
     }
 
     public PaymentResponse registerPayment(Payment payment) {      
+        String paymentId = payment.getPaymentId();
         String cardNumber = payment.getCardNumber();
         String status;
         String message;
@@ -25,10 +26,10 @@ public class PaymentService {
         } else {
             status = "authorised";
             message = "決済が承認されました。";
-        }        
+        }
         payment.setStatus(status);
         paymentMapper.insertPayment(payment);
 
-        return new PaymentResponse(status, message);
+        return new PaymentResponse(paymentId, status, message);
     }
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class PaymentResponse {
-    private String status;
-    private String message;
+    private final String paymentId;
+    private final String status;
+    private final String message;
 }

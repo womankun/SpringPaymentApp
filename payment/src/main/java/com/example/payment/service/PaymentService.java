@@ -1,5 +1,6 @@
 package com.example.payment.service;
 
+import com.example.payment.dto.PaymentResponse;
 import com.example.payment.mapper.PaymentMapper;
 import com.example.payment.model.Payment;
 import org.springframework.stereotype.Service;
@@ -13,14 +14,21 @@ public class PaymentService {
         this.paymentMapper = paymentMapper;
     }
 
-    public void registerPayment(Payment payment) {      
+    public PaymentResponse registerPayment(Payment payment) {      
         String cardNumber = payment.getCardNumber();
+        String status;
+        String message;
 
         if (cardNumber.equals("4100000000005000")) {
-          payment.setStatus("declined");
+            status = "declined";
+            message = "このカードは拒否されました。別のカードをご利用ください。";
         } else {
-          payment.setStatus("authorised");
-        }
+            status = "authorised";
+            message = "決済が承認されました。";
+        }        
+        payment.setStatus(status);
         paymentMapper.insertPayment(payment);
+
+        return new PaymentResponse(status, message);
     }
 }

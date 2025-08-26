@@ -2,7 +2,6 @@ package com.example.payment.controller;
 
 import com.example.payment.dto.PaymentRequest;
 import com.example.payment.dto.PaymentResponse;
-import com.example.payment.model.Payment;
 import com.example.payment.service.PaymentService;
 
 import jakarta.validation.Valid;

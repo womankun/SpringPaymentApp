@@ -1,5 +1,6 @@
 package com.example.payment.controller;
 
+import com.example.payment.dto.PaymentRequest;
 import com.example.payment.dto.PaymentResponse;
 import com.example.payment.model.Payment;
 import com.example.payment.service.PaymentService;
@@ -22,8 +23,8 @@ public class PaymentController {
 
     // オーソリAPI
     @PostMapping
-    public ResponseEntity<PaymentResponse> createPayment(@RequestBody @Valid Payment payment) {
-        PaymentResponse response = paymentService.registerPayment(payment);
+    public ResponseEntity<PaymentResponse> createPayment(@Valid @RequestBody PaymentRequest paymentRequest) {
+        PaymentResponse response = paymentService.registerPayment(paymentRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 }

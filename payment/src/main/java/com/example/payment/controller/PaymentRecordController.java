@@ -2,12 +2,9 @@ package com.example.payment.controller;
 
 import com.example.payment.dto.PaymentRecordRequest;
 import com.example.payment.dto.PaymentRecordResponse;
-import com.example.payment.model.Payment;
 import com.example.payment.service.PaymentRecordService;
 
 import jakarta.validation.Valid;
-
-import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -7,11 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.payment.dto.PaymentRequest;
-import com.example.payment.dto.PaymentResponse;
 import com.example.payment.dto.VoidRequest;
 import com.example.payment.dto.VoidResponse;
-import com.example.payment.service.PaymentService;
 import com.example.payment.service.VoidService;
 
 import jakarta.validation.Valid;
@@ -25,7 +22,7 @@ public class VoidController {
         this.voidService = voidService;
     }
 
-    // オーソリAPI
+    // オーソリ取り消しAPI
     @PostMapping
     public ResponseEntity<VoidResponse> registerVoid(@Valid @RequestBody VoidRequest voidRequest) {
         VoidResponse response = voidService.registerVoid(voidRequest.getPaymentId());

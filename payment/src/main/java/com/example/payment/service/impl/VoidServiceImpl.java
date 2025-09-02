@@ -1,7 +1,6 @@
 package com.example.payment.service.impl;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -52,8 +51,8 @@ class VoidServiceImpl implements VoidService {
       return new VoidResponse(paymentId, status, message);
     }
 
-    private boolean canVoid(String authorisedStatus, Timestamp voidedAt) {
-        return "authorised".equalsIgnoreCase(authorisedStatus) && voidedAt == null;
+    private boolean canVoid(String recordStatus, Timestamp voidedAt) {
+        return "authorised".equalsIgnoreCase(recordStatus) && voidedAt == null;
     }
 
 }

@@ -26,6 +26,6 @@ public class VoidController {
     @PostMapping
     public ResponseEntity<VoidResponse> registerVoid(@Valid @RequestBody VoidRequest voidRequest) {
         VoidResponse response = voidService.registerVoid(voidRequest.getPaymentId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 }

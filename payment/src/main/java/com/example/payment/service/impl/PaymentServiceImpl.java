@@ -31,7 +31,7 @@ public class PaymentServiceImpl implements PaymentService{
             message = "決済が承認されました。";
         }
         payment.setStatus(status);
-        paymentMapper.insertPayment(payment);
+        paymentMapper.registerPayment(payment);
 
         return new PaymentResponse(paymentId, status, message);
     }

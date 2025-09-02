@@ -14,6 +14,9 @@ public class Payment {
     private String cardNumber;
     private String cardExpiry;
     private Timestamp createdAt;
+    private Timestamp voidedAt;
+    private Timestamp refundedAt;
+    private Timestamp capturedAt;
     
     public Payment() {
         this.paymentId = UUID.randomUUID().toString();

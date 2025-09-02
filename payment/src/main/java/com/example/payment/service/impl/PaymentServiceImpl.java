@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.example.payment.dto.PaymentRequest;
 import com.example.payment.dto.PaymentResponse;
 import com.example.payment.mapper.PaymentMapper;
+import com.example.payment.model.CardBrand;
 import com.example.payment.model.Payment;
 import com.example.payment.service.PaymentService;
 
@@ -20,6 +21,7 @@ public class PaymentServiceImpl implements PaymentService{
         Payment payment = toEntity(paymentRequest);
         String cardNumber = payment.getCardNumber();
         String paymentId = payment.getPaymentId();
+        CardBrand brand = CardBrand.detect(cardNumber);
         String status;
         String message;
 
@@ -31,6 +33,7 @@ public class PaymentServiceImpl implements PaymentService{
             message = "決済が承認されました。";
         }
         payment.setStatus(status);
+        payment.setBrand(brand);
         paymentMapper.registerPayment(payment);
 
         return new PaymentResponse(paymentId, status, message);

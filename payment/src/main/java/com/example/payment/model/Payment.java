@@ -13,6 +13,7 @@ public class Payment {
     private String status;
     private String cardNumber;
     private String cardExpiry;
+    private CardBrand brand;
     private Timestamp createdAt;
     private Timestamp voidedAt;
     private Timestamp refundedAt;

@@ -6,8 +6,8 @@
 <mapper namespace="com.example.payment.mapper.PaymentMapper">
 
   <insert id="registerPayment" parameterType="com.example.payment.model.Payment">
-    INSERT INTO payments (payment_id, amount, status, card_number, card_expiry)
-    VALUES (#{paymentId}, #{amount}, #{status}, #{cardNumber}, #{cardExpiry})
+    INSERT INTO payments (payment_id, amount, status, card_number, card_expiry, brand)
+    VALUES (#{paymentId}, #{amount}, #{status}, #{cardNumber}, #{cardExpiry}, #{brand})
   </insert>
 
 </mapper>

@@ -18,7 +18,7 @@ public class PaymentRequest {
     private BigDecimal amount;
     
     @NotBlank(message = "カード番号は必須です")
-    @Size(min = 16, max = 16, message = "カード番号は16桁で入力してください")
+    @Size(min = 14, max = 16, message = "カード番号は14~16桁で入力してください")
     private String cardNumber;
 
     @ValidExpiry

@@ -1,3 +1,11 @@
+# 実行方法
+実行
+>docker-compose up --build
+
+停止
+>Ctrl + C  
+docker-compose down -v 
+
 # やりたいこと
 
 ## オーソリAPI(payments)

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/payment-records")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class PaymentRecordController {
 
     private final PaymentRecordService paymentRecordService;

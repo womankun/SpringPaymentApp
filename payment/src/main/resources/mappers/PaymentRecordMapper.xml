@@ -13,4 +13,19 @@
     SELECT * FROM payments WHERE payment_id = #{paymentId}
   </select>
 
+  <select id="selectRecordByDate" parameterType="com.example.payment.model.Payment">
+    SELECT *
+    FROM payments
+    WHERE created_at &gt;= STR_TO_DATE(#{startDate}, '%Y-%m-%d')
+      AND created_at &lt; DATE_ADD(STR_TO_DATE(#{endDate}, '%Y-%m-%d'), INTERVAL 1 DAY)
+  </select>
+
+  <select id="selectRecordByPaymentIdAndDate" parameterType="com.example.payment.model.Payment">
+    SELECT *
+    FROM payments
+    WHERE payment_id = #{paymentId}
+      AND created_at &gt;= STR_TO_DATE(#{startDate}, '%Y-%m-%d')
+      AND created_at &lt; DATE_ADD(STR_TO_DATE(#{endDate}, '%Y-%m-%d'), INTERVAL 1 DAY)
+  </select>
+
 </mapper>

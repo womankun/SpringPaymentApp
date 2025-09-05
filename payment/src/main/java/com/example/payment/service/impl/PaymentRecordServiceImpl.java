@@ -1,5 +1,7 @@
 package com.example.payment.service.impl;
 
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Service;
 
 import com.example.payment.dto.PaymentRecordResponse;
@@ -21,6 +23,16 @@ public class PaymentRecordServiceImpl implements PaymentRecordService{
 
     public PaymentRecordResponse selectRecordByPaymentId(String paymentId) {
         PaymentRecordResponse response = new PaymentRecordResponse(PaymentRecordMapper.selectRecordByPaymentId(paymentId));
+        return response;
+    }
+
+    public PaymentRecordResponse selectRecordByDate(LocalDate startDate, LocalDate endDate) {
+        PaymentRecordResponse response = new PaymentRecordResponse(PaymentRecordMapper.selectRecordByDate(startDate, endDate));
+        return response;
+    }
+
+    public PaymentRecordResponse selectRecordByPaymentIdAndDate(String paymentId, LocalDate startDate, LocalDate endDate) {
+        PaymentRecordResponse response = new PaymentRecordResponse(PaymentRecordMapper.selectRecordByPaymentIdAndDate(paymentId, startDate, endDate));
         return response;
     }
 }

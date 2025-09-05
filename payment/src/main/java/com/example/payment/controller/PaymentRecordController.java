@@ -2,7 +2,8 @@ package com.example.payment.controller;
 
 import com.example.payment.dto.PaymentRecordRequest;
 import com.example.payment.dto.PaymentRecordResponse;
-import com.example.payment.service.PaymentRecordService;
+import com.example.payment.service.strategy.PaymentRecordStrategy;
+import com.example.payment.service.strategy.PaymentRecordStrategyFactory;
 
 import jakarta.validation.Valid;
 
@@ -14,23 +15,15 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class PaymentRecordController {
 
-    private final PaymentRecordService paymentRecordService;
+    private final PaymentRecordStrategyFactory strategyFactory;
 
-    public PaymentRecordController(PaymentRecordService paymentRecordService) {
-      this.paymentRecordService = paymentRecordService;
+    public PaymentRecordController(PaymentRecordStrategyFactory strategyFactory) {
+        this.strategyFactory = strategyFactory;
     }
 
-    // 決済履歴一覧取得API
-    @GetMapping
-    public ResponseEntity<PaymentRecordResponse> selectAllRecords() {
-      PaymentRecordResponse payments = paymentRecordService.selectAllRecords();
-      return ResponseEntity.ok(payments);
-    }
-
-    // 決済履歴一覧取得API
     @PostMapping
-    public ResponseEntity<PaymentRecordResponse> selectRecordByPaymentId(@RequestBody @Valid PaymentRecordRequest request) {
-      PaymentRecordResponse payment = paymentRecordService.selectRecordByPaymentId(request.getPaymentId());
-      return ResponseEntity.ok(payment);
+    public ResponseEntity<PaymentRecordResponse> selectRecord(@RequestBody @Valid PaymentRecordRequest request) {
+        PaymentRecordStrategy strategy = strategyFactory.resolve(request);
+        return ResponseEntity.ok(strategy.execute(request));
     }
 }

@@ -5,13 +5,14 @@
         "authProtocol": "default",
         "enableSsl": "Disabled"
       },
+      "ssh": "Disabled",
       "previewLimit": 50,
       "server": "localhost",
       "port": 3306,
       "driver": "MySQL",
       "name": "payments",
-      "database": "mysql",
-      "username": "root"
+      "database": "payment_db",
+      "username": "user"
     }
   ]
 }
